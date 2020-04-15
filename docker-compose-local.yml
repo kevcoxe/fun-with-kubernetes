@@ -1,10 +1,9 @@
 version: "3.7"
 
 services:
-
-  # remote build of the flask api
-  flask-api:
-    image: kevcoxe/test-kubernetes-flask-api
+  # local build of the flask api
+  flask-api-local:
+    build: ./backend/flask-api
     container_name: flask-api
     restart: always
     environment:
@@ -14,9 +13,9 @@ services:
     expose:
       - 8000
 
-  # remote build of the nginx and react frontend
-  nginx-react:
-    image: kevcoxe/test-kubernetes-frontend
+  # local build of the nginx and react frontend
+  nginx-react-local:
+    build: ./frontend
     container_name: nginx-react
     restart: always
     ports:
