@@ -4,7 +4,7 @@ WORKDIR /frontend
 
 COPY react-frontend /frontend
 
-ENV REACT_APP_BUILD_VERSION=0.0.1
+ENV REACT_APP_BUILD_VERSION=0.0.4
 
 RUN yarn
 RUN yarn build
