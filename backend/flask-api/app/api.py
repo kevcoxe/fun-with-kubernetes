@@ -12,7 +12,7 @@ products = [
 ]
 
 
-@app.route("/products")
+@app.route("/api/products")
 def api_v1_get_products():
     return jsonify({
         'message': 'Here are my products',
