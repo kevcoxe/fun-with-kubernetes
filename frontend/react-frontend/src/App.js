@@ -3,21 +3,20 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const build_version = process.env.REACT_APP_BUILD_VERSION || 'unknown';
+  const build_version_test = process.env.REACT_APP_BUILD_VERSION_TEST || 'unknown';
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          current build: <code>{ build_version }</code>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          current build passed in: <code>{ build_version_test }</code>
+        </p>
       </header>
     </div>
   );

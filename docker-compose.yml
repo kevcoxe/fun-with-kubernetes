@@ -1,8 +1,31 @@
 version: "3.7"
 
 services:
-  flask_api:
-    build: ./backend/flask-api
+  # local build of the flask api
+  # flask-api-local:
+  #   build: ./backend/flask-api
+  #   container_name: flask-api
+  #   restart: always
+  #   environment:
+  #     - APP_NAME=FlaskApi
+  #     - HOST=0.0.0.0
+  #     - PORT=8000
+  #   expose:
+  #     - 8000
+
+  # local build of the nginx and react frontend
+  nginx-react-local:
+    build: ./frontend
+    container_name: nginx-react
+    restart: always
+    environment:
+      - BUILD_VERSION=0.0.1
+    ports:
+      - "80:80"
+
+  # remote build of the flask api
+  flask-api:
+    image: kevcoxe/test-kubernetes-flask-api:0.0.1
     container_name: flask-api
     restart: always
     environment:
@@ -12,9 +35,12 @@ services:
     expose:
       - 8000
 
-  nginx-react:
-    build: ./frontend
-    container_name: nginx-react
-    restart: always
-    ports:
-      - "80:80"
+  # remote build of the nginx and react frontend
+  # nginx-react:
+  #   image: kevcoxe/test-kubernetes-frontend:0.0.1
+  #   container_name: nginx-react
+  #   restart: always
+  #   environment:
+  #     - BUILD_VERSION=0.0.1
+  #   ports:
+  #     - "80:80"

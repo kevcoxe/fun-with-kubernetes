@@ -4,6 +4,8 @@ WORKDIR /frontend
 
 COPY react-frontend /frontend
 
+RUN echo "REACT_APP_BUILD_VERSION=0.0.1" > /frontend/.env
+RUN echo "REACT_APP_BUILD_VERSION_TEST=$BUILD_VERSION" > /frontend/.env
 RUN yarn
 RUN yarn build
 
