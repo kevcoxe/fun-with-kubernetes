@@ -3,7 +3,6 @@ FROM node:12.6.0 as react-build
 WORKDIR /frontend
 
 COPY react-frontend /frontend
-COPY run.sh /frontend/
 
 ENV REACT_APP_BUILD_VERSION=0.0.7
 
