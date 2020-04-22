@@ -1,9 +1,8 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app: other-api
-    version: v7
   name: other-api
   namespace: default
 spec:
@@ -12,7 +11,6 @@ spec:
   selector:
     matchLabels:
       app: other-api
-      version: v7
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,10 +20,9 @@ spec:
     metadata:
       labels:
         app: other-api
-        version: v7
     spec:
       containers:
-        - image: kevcoxe/test-kubernetes-other-api:0.0.7
+        - image: kevcoxe/test-kubernetes-other-api:0.0.8
           imagePullPolicy: Always
           name: other-api
       restartPolicy: Always
@@ -45,6 +42,5 @@ spec:
       targetPort: 8080
   selector:
     app: other-api
-    version: v7
   sessionAffinity: None
-  type: LoadBalancer
+  type: NodePort

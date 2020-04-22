@@ -15,7 +15,7 @@ products = [
 
 @app.route('/')
 def index():
-    return 'success'
+    return 'flask success', 200
 
 
 @app.route("/api")

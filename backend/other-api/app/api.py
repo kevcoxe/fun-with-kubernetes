@@ -22,7 +22,7 @@ def get_products():
 
 @app.route('/')
 def index():
-    return 'success', 200
+    return 'other api success', 200
 
 
 @app.route('/env')

@@ -1,9 +1,8 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app: test-frontend
-    version: v7
   name: test-frontend
   namespace: default
 spec:
@@ -12,7 +11,6 @@ spec:
   selector:
     matchLabels:
       app: test-frontend
-      version: v7
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,10 +20,9 @@ spec:
     metadata:
       labels:
         app: test-frontend
-        version: v7
     spec:
       containers:
-        - image: kevcoxe/test-kubernetes-frontend:0.0.7
+        - image: kevcoxe/test-kubernetes-frontend:0.0.10
           imagePullPolicy: Always
           name: test-frontend
       restartPolicy: Always
@@ -40,11 +37,10 @@ metadata:
   namespace: default
 spec:
   ports:
-    - port: 80
+    - port: 3000
       protocol: TCP
-      targetPort: 80
+      targetPort: 3000
   selector:
     app: test-frontend
-    version: v7
   sessionAffinity: None
-  type: LoadBalancer
+  type: NodePort

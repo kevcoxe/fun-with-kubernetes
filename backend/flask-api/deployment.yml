@@ -1,9 +1,8 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app: flask-api
-    version: v5
   name: flask-api
   namespace: default
 spec:
@@ -12,7 +11,6 @@ spec:
   selector:
     matchLabels:
       app: flask-api
-      version: v5
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,10 +20,9 @@ spec:
     metadata:
       labels:
         app: flask-api
-        version: v5
     spec:
       containers:
-        - image: kevcoxe/test-kubernetes-flask-api:0.0.5
+        - image: kevcoxe/test-kubernetes-flask-api:0.0.6
           imagePullPolicy: Always
           name: flask-api
           ports:
@@ -69,6 +66,5 @@ spec:
       targetPort: 5000
   selector:
     app: flask-api
-    version: v5
   sessionAffinity: None
-  type: LoadBalancer
+  type: NodePort

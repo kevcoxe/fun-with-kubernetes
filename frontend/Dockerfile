@@ -1,18 +1,15 @@
-FROM node:12.6.0 as react-build
+FROM node:8.6.0
 
-WORKDIR /frontend
+ADD ./app /app
 
-COPY react-frontend /frontend
+WORKDIR /app
 
-ENV REACT_APP_BUILD_VERSION=0.0.7
+EXPOSE 3000
 
+ENV REACT_APP_BUILD_VERSION=0.0.10
+
+RUN yarn install
 RUN yarn
-RUN yarn build
 
+CMD ["yarn", "start"]
 
-FROM nginx
-
-RUN rm /etc/nginx/conf.d/default.conf
-
-COPY nginx.conf /etc/nginx/conf.d/
-COPY --from=react-build /frontend/build /var/www/html/build/
